@@ -1,13 +1,12 @@
 import { taskSchema } from "@/app/schemas/taskSchema";
 import DeleteButton from "./DeleteButton";
 import StartAnimation from "@/app/animation/StartAnimation";
-import { JSX } from "react";
-type PageProps = {
-  params: { id: string };
-};
-async function Task({ params }: PageProps) :Promise<JSX.Element>  {
+type Params = Promise<{ id: string }>
+
+async function Task(props: { params: Params }) {
 
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
+  const params = await props.params;
   const id = params.id;
   const res = await fetch(`${API_URL}/${id}`).then((res) => res.json());
   if (res === "Not found") {
