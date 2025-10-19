@@ -1,8 +1,11 @@
 import { taskSchema } from "@/app/schemas/taskSchema";
 import DeleteButton from "./DeleteButton";
 import StartAnimation from "@/app/animation/StartAnimation";
-
-async function Task({ params }: { params: { id: string } }) {
+import { JSX } from "react";
+type PageProps = {
+  params: { id: string };
+};
+async function Task({ params }: PageProps) :Promise<JSX.Element>  {
 
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
   const id = params.id;
